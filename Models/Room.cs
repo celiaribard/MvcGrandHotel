@@ -12,5 +12,8 @@ public class Room
     // Constructeur par défaut
     public Room() { }
 
-
+    public override string ToString()
+    {
+        return $"Id: {Id}, Room name: {Name}, Description: {Description}, Price: {Price}, CategoryId: {CategoryId}";
+    }
 }

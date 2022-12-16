@@ -1,3 +1,5 @@
+// création du contrôleur API 
+
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using MvcGrandHotel.Data;
@@ -16,6 +18,24 @@ public class GrandHotelApiController : ControllerBase
     // GET: api/GrandHotelApi
     public async Task<ActionResult<IEnumerable<Room>>> GetRooms()
     {
-        return await _context.Rooms.ToListAsync();
+        return await _context.Rooms.Include(r => r.Category).ToListAsync();
+    }
+
+    // GET: api/GrandHotelApi/5
+    [HttpGet("{id}")]
+    public async Task<ActionResult<Room>> GetRoom(int id)
+    {
+        // Find room and related enrollments
+        // SingleAsync() throws an exception if no room is found (which is possible, depending on id)
+        // SingleOrDefaultAsync() is a safer choice here
+        var room = await _context.Rooms
+            .Where(r => r.Id == id)
+            .Include(r => r.Category)
+            .SingleOrDefaultAsync();
+
+        if (room == null)
+            return NotFound();
+
+        return room;
     }
 }
