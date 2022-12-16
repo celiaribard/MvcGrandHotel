@@ -5,5 +5,8 @@ public class Category
     public int Id { get; set; }
     public string Name { get; set; } = null!;
     public List<Room> Rooms { get; set; } = new();
-
+    public override string ToString()
+    {
+        return $"Name: {Name}";
+    }
 }

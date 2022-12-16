@@ -21,6 +21,7 @@ public class RoomController : Controller
     {
         var rooms = await _context.Rooms
             .OrderBy(r => r.Name)
+            .Include(r => r.Category)
             .ToListAsync();
 
         return View(rooms);
