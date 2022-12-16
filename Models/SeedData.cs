@@ -15,6 +15,7 @@ public class SeedData
             }
             // Add several categories
             context.Categories.AddRange(
+
             new Category
             {
                 Name = "Confort"
@@ -27,26 +28,41 @@ public class SeedData
             {
                 Name = "Prestige"
             }
-            );
 
-            // Look for existing content
-            if (context.Rooms.Any())
-            {
-                return; // DB already filled
-            }
+            );
 
             // Add several rooms
 
-            // context.Rooms.AddRange(
-            // new Room
-            // {
-            //     Name = "Calypse",
-            //     Description = "Une chambre belle et fonctionnelle",
-            //     Price = 140,
-            //     CategoryId = 1
-            // }
-            // );
-
+            context.Rooms.AddRange(
+            new Room
+            {
+                Name = "Calypse",
+                Description = "Une chambre belle et fonctionnelle.",
+                Price = 140,
+                CategoryId = 1
+            },
+            new Room
+            {
+                Name = "Grand Bleu",
+                Description = "Une chambre simple mais élégante, au décor rappelant l'océan.",
+                Price = 150,
+                CategoryId = 1
+            },
+            new Room
+            {
+                Name = "Pacific",
+                Description = "Vaste et aérée, elle est décorée uniquement de bois marin.",
+                Price = 175,
+                CategoryId = 2
+            },
+            new Room
+            {
+                Name = "Normandy",
+                Description = "Notre chambre la plus élégante. Tout ici respire le rafinnement.",
+                Price = 240,
+                CategoryId = 3
+            }
+            );
 
             // Commit changes into DB
             context.SaveChanges();

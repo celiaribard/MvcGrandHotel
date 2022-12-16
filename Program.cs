@@ -15,7 +15,7 @@ builder.Services.AddDbContext<GrandHotelContext>();
 var app = builder.Build();
 
 // Seed data into DB
-SeedData.Init();
+// SeedData.Init();
 
 // Configure the HTTP request pipeline.
 if (!app.Environment.IsDevelopment())
