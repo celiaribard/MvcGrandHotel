@@ -8,20 +8,20 @@ namespace MvcGrandHotel.Controllers;
 
 [Route("api/[controller]")]
 [ApiController]
-public class GrandHotelApiController : ControllerBase
+public class RoomApiController : ControllerBase
 {
     private readonly GrandHotelContext _context;
-    public GrandHotelApiController(GrandHotelContext context)
+    public RoomApiController(GrandHotelContext context)
     {
         _context = context;
     }
-    // GET: api/GrandHotelApi
+    // GET: api/RoomApi
     public async Task<ActionResult<IEnumerable<Room>>> GetRooms()
     {
         return await _context.Rooms.Include(r => r.Category).ToListAsync();
     }
 
-    // GET: api/GrandHotelApi/5
+    // GET: api/RoomApi/5
     [HttpGet("{id}")]
     public async Task<ActionResult<Room>> GetRoom(int id)
     {
