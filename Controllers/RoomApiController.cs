@@ -18,7 +18,9 @@ public class RoomApiController : ControllerBase
     // GET: api/RoomApi
     public async Task<ActionResult<IEnumerable<Room>>> GetRooms()
     {
-        return await _context.Rooms.Include(r => r.Category).ToListAsync();
+        return await _context.Rooms
+        .Include(r => r.Category)
+        .ToListAsync();
     }
 
     // GET: api/RoomApi/5
@@ -30,7 +32,7 @@ public class RoomApiController : ControllerBase
         // SingleOrDefaultAsync() is a safer choice here
         var room = await _context.Rooms
             .Where(r => r.Id == id)
-            .Include(r => r.Category)
+            // .Include(r => r.Category)
             .SingleOrDefaultAsync();
 
         if (room == null)
