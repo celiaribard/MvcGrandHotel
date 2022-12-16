@@ -1,9 +1,21 @@
+using System.Text.Json.Serialization;
+using MvcGrandHotel.Data;
+using MvcGrandHotel.Models;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
-builder.Services.AddControllersWithViews();
+builder.Services.AddControllersWithViews().AddJsonOptions(x =>
+    x.JsonSerializerOptions.ReferenceHandler = ReferenceHandler.IgnoreCycles);
+
+
+// Attach an EF Core database context to each query
+builder.Services.AddDbContext<GrandHotelContext>();
 
 var app = builder.Build();
+
+// Seed data into DB
+SeedData.Init();
 
 // Configure the HTTP request pipeline.
 if (!app.Environment.IsDevelopment())
